@@ -1,0 +1,51 @@
+
+<!-- Top content -->
+<div class="top-content col-lg-12" 
+  style="background-image: url('assets/img/background.jpg'); background-size: 100% 80%; background-repeat: no-repeat">
+  
+  <div class="inner-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 col-sm-offset-3 form-box">
+              <div class="form-top">
+                <div class="form-top-left">
+                  <h3>Acceso</h3>
+                    <p>Ingresar correo electrónico y contraseña:</p>
+                </div>
+                <div class="form-top-right">
+                  <i class="fa fa-lock"></i>
+                </div>
+              </div>
+              <div class="form-bottom">
+                <form role="form" method="post" class="login-form"
+                  #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+                  <div class="form-group">
+                    <label class="sr-only" for="email">Email</label>
+                    <input type="text" name="email" placeholder="Email..." class="form-username form-control" id="email" ngModel>
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="password">Contraseña</label>
+                    <input type="password" name="password" placeholder="Contraseña..." class="form-password form-control" id="password" ngModel>
+                  </div>
+                  <button type="submit" class="btn">Enviar</button>
+                </form>
+              </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Javascript -->
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.backstretch.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    
+    <!--[if lt IE 10]>
+        <script src="assets/js/placeholder.js"></script>
+    <![endif]-->
