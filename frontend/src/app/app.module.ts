@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
     //NgbModule,
     FormsModule,
     RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [LoginGuard, NoLoginGuard],
   bootstrap: [AppComponent]
