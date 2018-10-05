@@ -12,9 +12,18 @@ import { LoginGuard } from './_guards/login.guard';
 import { NoLoginGuard } from './_guards/no-login.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpModule } from '@angular/http';
+import { componentFactoryName } from '@angular/compiler';
+import { UsersComponent } from './control-panel/users/users.component';
 
 const routes: Routes = [
   { path: '', component: ControlPanelComponent, canActivate: [LoginGuard] },
+  { path: 'control-panel', component: ControlPanelComponent, canActivate: [LoginGuard], children: [
+    { 
+      path: 'users', 
+      component: UsersComponent,
+      canActivate: [LoginGuard]
+    }
+  ] },
   { path: 'login', component: LoginComponent, canActivate: [NoLoginGuard] },
   { path: 'logout', component: LogoutComponent},
 ];
@@ -24,7 +33,8 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     ControlPanelComponent,
-    LogoutComponent
+    LogoutComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

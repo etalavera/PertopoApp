@@ -13,7 +13,7 @@ export class NoLoginGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     
-    if (localStorage.getItem('email') === null) {
+    if (localStorage.getItem('access_token') === null) {
       return true;
     }
     else {

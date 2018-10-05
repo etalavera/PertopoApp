@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email, this.password)
       .subscribe((data) => {
         localStorage.access_token = data.access_token;
+        localStorage.user = data.user.name;
         this.router.navigate(['']);
       }, error => {
         alert(error.statusText);

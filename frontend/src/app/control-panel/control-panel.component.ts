@@ -8,6 +8,8 @@ import { LogoutService } from '../_services/logout/logout.service';
 })
 export class ControlPanelComponent implements OnInit {
 
+  user = localStorage.user;
+
   constructor (private logoutService: LogoutService) {}
   ngOnInit() {
   }
