@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,10 +18,6 @@ export class LoginService {
       email: email,
       password: password
     }
-
-    console.log('--------- body login -------');
-    console.log(body);
-    console.log('---------            -------');
 
     return this.http.post<any>(environment.urlApi + 'auth/login', body);
   }

@@ -25,20 +25,12 @@ export class LoginComponent implements OnInit {
     this.email = form.value.email;
     this.password = form.value.password;
 
-      this.loginService.login(this.email, this.password)
+    this.loginService.login(this.email, this.password)
       .subscribe((data) => {
         localStorage.access_token = data.access_token;
+        this.router.navigate(['']);
       }, error => {
-        debugger;
-        alert("Service Response Error");
+        alert(error.statusText);
       });
-
-    /*if (form.value.email === "enrique" && form.value.password === "talavera") {
-      localStorage.setItem('email', form.value.email);
-      this.router.navigate(['']);
-    }
-    else {
-      alert("Usuario o Contraseña Incorrectos")
-    }*/
   }
 }
