@@ -15,11 +15,12 @@ export class LogoutService {
 
   logout(access_token: string): Observable<any>{
     const headers = new Headers({
-      'Authorization': 'Bearer ' + access_token
+      'Authotization': 'Bearer ' + access_token
     })
     const options = new RequestOptions({
       headers: headers
     });
+
     return this.http.get(environment.urlApi + 'auth/logout', options);
   }
 }
