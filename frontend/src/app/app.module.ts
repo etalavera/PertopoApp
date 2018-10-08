@@ -25,7 +25,7 @@ const routes: Routes = [
     }
   ] },
   { path: 'login', component: LoginComponent, canActivate: [NoLoginGuard] },
-  { path: 'logout', component: LogoutComponent},
+  { path: 'logout', component: LogoutComponent, canActivate: [NoLoginGuard]},
 ];
 
 @NgModule({

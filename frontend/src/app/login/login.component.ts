@@ -24,9 +24,13 @@ export class LoginComponent implements OnInit {
     
     this.email = form.value.email;
     this.password = form.value.password;
-
+    
     this.loginService.login(this.email, this.password)
       .subscribe((data) => {
+        debugger;
+        if (data.user.active == 0) {
+          return alert("El usuario está inactivo, favor de contactar al administrador del sistema");
+        }
         localStorage.access_token = data.access_token;
         localStorage.user = data.user.name;
         this.router.navigate(['']);
