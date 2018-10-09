@@ -18,7 +18,6 @@
         <th>Apellido Materno</th>
         <th>Email</th>
         <th>Activo</th>
-        <th>Rol</th>
         <th></th>
         <th></th>
       </tr>
@@ -26,12 +25,16 @@
     <tbody *ngFor="let user of users">
       <tr>
         <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>Talavera</td>
-        <td>Ordaz</td>
+        <td *ngIf="user.segundoNombre == '' || user.segundoNombre == null; else Fullname">
+          {{ user.primerNombre }}
+        </td>
+        <td #FullName>
+          {{ user.primerNombre + " " + user.segundoNombre }}
+        </td>
+        <td>{{ user.apellidoPaterno }}</td>
+        <td>{{ user.apellidoMaterno }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.active }}</td>
-        <td>{{ user.rol }}</td>
         <td>
           <button class="btn btn-sm btn-outline-secondary">editar</button>
         </td>

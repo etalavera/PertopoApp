@@ -18,16 +18,20 @@ class AuthController extends Controller
     public function signup(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'primerNombre' => 'required|string',
+            'segundoNombre' => 'string',
+            'apellidoPaterno' => 'required|string',
+            'apellidoMaterno' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed',
-            'rol' => 'required|string'
         ]);
         $user = new User([
-            'name' => $request->name,
+            'primerNombre' => $request->primerNombre,
+            'segundoNombre' => $request->segundoNombre,
+            'apellidoPaterno' => $request->apellidoPaterno,
+            'apellidoMaterno' => $request->apellidoMaterno,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'rol' => $request->rol
         ]);
         $user->save();
         return response()->json([
