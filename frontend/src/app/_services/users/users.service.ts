@@ -13,4 +13,8 @@ export class UsersService {
   getUsers(): Observable<any> {
     return this.httpClient.get<any>(environment.urlApi + 'users');
   }
+
+  postSignup(body: any): Observable<any> {
+    return this.httpClient.post(environment.urlApi + 'auth/signup', body);
+  }
 }

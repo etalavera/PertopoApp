@@ -28,8 +28,14 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email, this.password)
       .subscribe((data) => {
         localStorage.access_token = data.access_token;
-        localStorage.user = data.user.name;
-        this.router.navigate(['']);
+        localStorage.user = data.user.primerNombre + " " + data.user.apellidoPaterno;
+        if (data.user.active == 0) {
+          alert('Usuario desactivado, contacte al administrador del sistema');
+          localStorage.clear();
+        }
+        else {
+          this.router.navigate(['']);
+        }        
       }, error => {
         alert(error.statusText);
       });

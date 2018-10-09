@@ -3,7 +3,7 @@
   <h1 class="h2">Usuarios</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
-      <button class="btn btn-sm btn-outline-success">Agregar usuario</button>
+      <button class="btn btn-sm btn-outline-success" (click)="openAddUsers(content)">Agregar usuario</button>
     </div>
   </div>
 </div>
@@ -41,9 +41,89 @@
           <button class="btn btn-sm btn-outline-secondary">editar</button>
         </td>
         <td>
-          <button class="btn btn-sm btn-outline-danger">eliminar</button>               
+          <button class="btn btn-sm btn-outline-danger">desactivar</button>               
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+<!-- MODALES -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar nuevo usuario</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form role="form" method="post" #addUsersForm="ngForm" (ngSubmit)="signup(addUsersForm)">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="primerNombre"><h6>Primer Nombre</h6></label>
+            <input type="text" id="primerNombre" name="primerNombre" class="form-control" ngModel>
+          </div>
+          <div class="col-md-6">
+            <label for="segundoNombre"><h6>Segundo Nombre</h6></label>
+            <input type="text" id="segundoNombre" name="segundoNombre" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="apellidoPaterno"><h6>Apellido Paterno</h6></label>
+            <input type="text" id="apellidoPaterno" name="apellidoPaterno" class="form-control" ngModel>
+          </div>
+          <div class="col-md-6">
+            <label for="apellidoMaterno"><h6>Apellido Materno</h6></label>
+            <input type="text" id="apellidoMaterno" name="apellidoMaterno" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="password"><h6>Contraseña</h6></label>
+            <input type="text" id="password" name="password" class="form-control" ngModel>
+          </div>
+          <div class="col-md-6">
+            <label for="password_confirmation"><h6>Confirmar contraseña</h6></label>
+            <input type="text" id="password_confirmation" name="password_confirmation" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="password"><h6>Correo electrónico</h6></label>
+            <input type="email" id="email" name="email" class="form-control" ngModel>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn">Enviar</button>
+      </div>
+    </form>
+  </div>
+  
+</ng-template>
+<!-- ./MODALES  -->
+<!--<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>-->

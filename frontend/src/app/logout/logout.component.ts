@@ -18,12 +18,11 @@ export class LogoutComponent implements OnInit {
 
   logout() {
     const token = localStorage.access_token;
-    debugger;
+    
     this.logoutService.logout(token)
       .subscribe((data) => {
-        debugger;
       }, error => {
-        debugger;
+        alert(error.message)
       });
   }
 

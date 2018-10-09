@@ -13,14 +13,7 @@ export class LogoutService {
 
   constructor(private httpClient: HttpClient, private http: Http) { }
 
-  logout(access_token: string): Observable<any>{
-    const headers = new Headers({
-      'Authorization': 'Bearer ' + access_token
-    })
-    const options = new RequestOptions({
-      headers: headers
-    });
-
-    return this.http.get(environment.urlApi + 'auth/logout', options);
+  logout(access_token: string): Observable<any> {
+    return this.httpClient.get(environment.urlApi + 'auth/logout');
   }
 }
