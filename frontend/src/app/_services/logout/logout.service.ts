@@ -15,7 +15,7 @@ export class LogoutService {
 
   logout(access_token: string): Observable<any>{
     const headers = new Headers({
-      'Authotization': 'Bearer ' + access_token
+      'Authorization': 'Bearer ' + access_token
     })
     const options = new RequestOptions({
       headers: headers

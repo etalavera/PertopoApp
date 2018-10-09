@@ -13,23 +13,26 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>No.</th>
         <th>Nombre</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
         <th>Email</th>
         <th>Activo</th>
         <th></th>
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let user of users">
       <tr>
         <td>{{ user.id }}</td>
         <td *ngIf="user.segundoNombre == '' || user.segundoNombre == null; else Fullname">
           {{ user.primerNombre }}
         </td>
-        <td #FullName>
-          {{ user.primerNombre + " " + user.segundoNombre }}
-        </td>
+        <ng-template #Fullname>
+          <td>
+            {{ user.primerNombre + " " + user.segundoNombre }}
+          </td>
+        </ng-template>
         <td>{{ user.apellidoPaterno }}</td>
         <td>{{ user.apellidoMaterno }}</td>
         <td>{{ user.email }}</td>
