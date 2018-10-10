@@ -15,6 +15,8 @@ import { HttpModule } from '@angular/http';
 import { UsersComponent } from './control-panel/users/users.component';
 import { AuthInterceptor } from './_interceptor/auth.interceptor';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 const routes: Routes = [
   { path: '', component: ControlPanelComponent, canActivate: [LoginGuard] },
   { path: 'control-panel', component: ControlPanelComponent, canActivate: [LoginGuard], children: [
@@ -42,7 +44,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    NgxSpinnerModule
   ],
   providers: 
   [
