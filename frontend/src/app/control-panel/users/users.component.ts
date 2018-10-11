@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../_services/users/users.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RolesService } from '../../_services/roles/roles.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-users',
@@ -13,16 +15,21 @@ export class UsersComponent implements OnInit {
   users: any;
   closeResult: string;
   registerForm: FormGroup;
+  rolesData: any;
 
   constructor(private usersService: UsersService,
-    private modalService: NgbModal) { }
+    private spinner: NgxSpinnerService,
+    private modalService: NgbModal,
+    private roles: RolesService) { }
 
   ngOnInit() {
     this.getUsers();
+    this.getRoles();
+    this.spinner.hide();
   }
 
   signup(form: NgForm) {
-    debugger;
+    this.spinner.show();
     const body = {
       primerNombre: form.value.primerNombre,
       segundoNombre: form.value.primerNombre,
@@ -32,18 +39,25 @@ export class UsersComponent implements OnInit {
       password: form.value.password,
       password_confirmation: form.value.password_confirmation 
     }
-    console.log(body);
+    
     this.usersService.postSignup(body)
       .subscribe((data) => {
-        debugger;
       }, error => {
         alert(error);
       });
   }
 
-  get f() { return this.registerForm.controls }
+  getRoles() {
+    return this.roles.getRoles()
+      .subscribe((data) => {
+        this.rolesData = data
+      }, error => {
+        alert(error);
+      });
+  }
 
   getUsers() {
+    this.spinner.show();
     return this.usersService.getUsers()
       .subscribe((data) => {
         this.users = data;

@@ -6,6 +6,7 @@ import { ControlPanelComponent } from './control-panel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AddComponent } from './users/add/add.component';
 
 const controlPanelRouters: Routes = [
   {
@@ -30,7 +31,8 @@ const controlPanelRouters: Routes = [
   ],
   declarations: [
     UsersComponent,
-    ControlPanelComponent
+    ControlPanelComponent,
+    AddComponent
   ]
 })
 export class ControlPanelModule {

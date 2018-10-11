@@ -16,9 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+// Auth
 Route::get('users', 'UsersController@index');
-
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -32,3 +31,8 @@ Route::group([
         Route::get('user', 'AuthController@user');
     });
 });
+//Roles
+Route::resource('roles', 'RolesController')->only([
+    'index',
+    'show'
+]);
