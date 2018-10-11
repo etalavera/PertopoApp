@@ -15,12 +15,12 @@ class CreateStaffTable extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
+            $table->integer('id_user')->unsigned()->unique();
             $table->string('primerNombre');
             $table->string('segundoNombre')->nullable();
             $table->string('apellidoPaterno');
             $table->string('apellidoMaterno');
-            $table->string('direccion');
+            $table->string('domicilio');
             $table->string('interior')->nullable();
             $table->string('exterior');
             $table->string('colonia');
@@ -28,6 +28,9 @@ class CreateStaffTable extends Migration
             $table->string('estado');
             $table->integer('cp');
             $table->string('telefono');
+
+            $table->foreign('id_user')->references('id')->on('users');
+            
             $table->timestamps();
         });
     }
