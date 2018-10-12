@@ -17,7 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 // Auth
-Route::get('users', 'UsersController@index');
+Route::resource('users', 'UsersController')->only([
+    'index',
+    'show'
+]);
 Route::group([
     'prefix' => 'auth'
 ], function () {

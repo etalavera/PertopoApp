@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RolesService } from '../../_services/roles/roles.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -13,6 +14,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class UsersComponent implements OnInit {
 
   users: any;
+  usersList: any = new Array();
+  usersArray;
+
   closeResult: string;
   registerForm: FormGroup;
   rolesData: any;
@@ -20,16 +24,20 @@ export class UsersComponent implements OnInit {
   constructor(private usersService: UsersService,
     private spinner: NgxSpinnerService,
     private modalService: NgbModal,
-    private roles: RolesService) { }
+    private roles: RolesService,
+    private router: Router,
+    private route: ActivatedRoute) { 
+
+    }
 
   ngOnInit() {
+    this.spinner.show();
     this.getUsers();
     this.getRoles();
-    this.spinner.hide();
   }
 
   signup(form: NgForm) {
-    this.spinner.show();
+    
     const body = {
       primerNombre: form.value.primerNombre,
       segundoNombre: form.value.primerNombre,
@@ -57,21 +65,18 @@ export class UsersComponent implements OnInit {
   }
 
   getUsers() {
-    this.spinner.show();
-    return this.usersService.getUsers()
+    return this.usersService.getUsersAndStaff()
       .subscribe((data) => {
         this.users = data;
+        this.spinner.hide();
       }, error => {
+        this.spinner.hide();
         alert(error.message);
       });
   }
 
   openAddUsers(content) {
-    this.modalService.open(content, {size: 'lg', ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.router.navigate(['control-panel/users/add'], {relativeTo: this.route})
   }
 
   private getDismissReason(reason: any): string {

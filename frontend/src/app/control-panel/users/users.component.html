@@ -1,6 +1,6 @@
 <br /><br />
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-  <h1 class="h2">Usuarios</h1>
+  <h1 class="h2">Gestion de usuarios</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
       <button class="btn btn-sm btn-outline-success" (click)="openAddUsers(content)">Agregar usuario</button>
@@ -9,40 +9,45 @@
 </div>
 
 <div class="table-responsive">
-  <table class="table table-striped table-sm">
+  <table class="table table-striped">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Nombre</th>
-        <th>Apellido Paterno</th>
-        <th>Apellido Materno</th>
-        <th>Email</th>
-        <th>Activo</th>
-        <th></th>
-        <th></th>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido Paterno</th>
+        <th scope="col">Apellido Materno</th>
+        <th scope="col">Email</th>
+        <th scope="col">Activo</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody *ngFor="let user of users">
       <tr>
-        <td>{{ user.id }}</td>
-        <td *ngIf="user.segundoNombre == '' || user.segundoNombre == null; else Fullname">
-          {{ user.primerNombre }}
+        <th scope="row">{{ user.user.id }}</th>
+        <td *ngIf="user.staff.segundoNombre == '' || user.staff.segundoNombre == null; else Fullname">
+          {{ user.staff.primerNombre }}
         </td>
         <ng-template #Fullname>
           <td>
-            {{ user.primerNombre + " " + user.segundoNombre }}
+            {{ user.staff.primerNombre + " " + user.staff.segundoNombre }}
           </td>
         </ng-template>
-        <td>{{ user.apellidoPaterno }}</td>
-        <td>{{ user.apellidoMaterno }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.active }}</td>
+        <td>{{ user.staff.apellidoPaterno }}</td>
+        <td>{{ user.staff.apellidoMaterno }}</td>
+        <td>{{ user.user.email }}</td>
+        <td>{{ user.user.active }}</td>
         <td>
           <button class="btn btn-sm btn-outline-secondary">editar</button>
         </td>
-        <td>
-          <button class="btn btn-sm btn-outline-danger">desactivar</button>               
+        <td *ngIf="user.user.active == 0; else botonActivar">
+          <button class="btn btn-sm btn-outline-info">activar</button>               
         </td>
+        <ng-template #botonActivar>
+          <td>
+            <button class="btn btn-sm btn-outline-danger">desactivar</button>               
+          </td>
+        </ng-template>
       </tr>
     </tbody>
   </table>

@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
 })
 export class ControlPanelComponent implements OnInit {
 
-  user = localStorage.user;
+  user: any;
 
   constructor (private logoutService: LogoutService, private router: Router) {}
   ngOnInit() {
+    this.user = localStorage.user;
   }
 
   logout() {

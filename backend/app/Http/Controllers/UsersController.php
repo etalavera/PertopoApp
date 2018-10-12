@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Staff;
 
 class UsersController extends Controller
 {
@@ -15,8 +16,20 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $users = User::all()->toArray();
-        return response()->json($users);
+        //$users = User::all()->toArray();
+        //return response()->json($users);
+        $users = User::all();
+        for($i=0; $i<count($users); $i++) {
+            //$staffArray[$i] = Staff::find($users[$i])->toArray();
+            $staffArray[$i] = array_merge(
+                [
+                    'user' => $users[$i],
+                    'staff' => Staff::find($users[$i])->first()
+                ]
+            );
+        }
+
+        return response()->json($staffArray);
     }
 
     /**
@@ -49,6 +62,8 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        $users = Staff::where('id_user', '=', $id)->get();
+        return response()->json($users);
     }
 
     /**

@@ -7,10 +7,18 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class UsersService {
-
+  
   constructor(private httpClient: HttpClient) { }
 
   getUsers(): Observable<any> {
+    return this.httpClient.get<any>(environment.urlApi + 'users');
+  }
+
+  getUserById(user_id: number): Observable<any> {
+    return this.httpClient.get<any>(environment.urlApi + 'users/' + user_id);
+  }
+
+  getUsersAndStaff(): Observable<any> {
     return this.httpClient.get<any>(environment.urlApi + 'users');
   }
 
