@@ -34,6 +34,8 @@ export class UsersComponent implements OnInit {
     this.spinner.show();
     this.getUsers();
     this.getRoles();
+    console.log('users, activated');
+    console.log(this.route);
   }
 
   signup(form: NgForm) {
@@ -76,7 +78,7 @@ export class UsersComponent implements OnInit {
   }
 
   openAddUsers(content) {
-    this.router.navigate(['control-panel/users/add'], {relativeTo: this.route})
+    this.router.navigate(['add'], {relativeTo: this.route})
   }
 
   private getDismissReason(reason: any): string {

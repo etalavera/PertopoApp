@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LogoutService } from '../_services/logout/logout.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-control-panel',
@@ -11,7 +11,10 @@ export class ControlPanelComponent implements OnInit {
 
   user: any;
 
-  constructor (private logoutService: LogoutService, private router: Router) {}
+  constructor (private logoutService: LogoutService, 
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
   ngOnInit() {
     this.user = localStorage.user;
   }

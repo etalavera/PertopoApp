@@ -22,7 +22,7 @@
           <br>
           <a class="nav-link active" href="#">
               <span class="fa fa-hashtag"></span>
-              Dashboard <span class="sr-only">(current)</span>
+              Dashboard <span class="sr-only"></span>
           </a>
           <ul class="nav flex-column">
             <li class="nav-item">
@@ -46,8 +46,8 @@
             </a>
           </h6>
           <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-                <a class="nav-link" href="control-panel/users">
+            <li routerLinkActive="active" [routerLink]="['users']">
+                <a class="nav-link">
                   <span class="fa fa-users"></span>
                   Usuarios
                 </a>
@@ -73,10 +73,12 @@
           </ul>
         </div>
       </nav>
-
+      
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <router-outlet></router-outlet>
+        <router-outlet></router-outlet> 
+        <router-outlet name='usersOutlet'></router-outlet>
       </main>
+      
     </div>
   </div>
 

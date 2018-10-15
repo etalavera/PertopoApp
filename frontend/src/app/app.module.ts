@@ -16,32 +16,44 @@ import { UsersComponent } from './control-panel/users/users.component';
 import { AuthInterceptor } from './_interceptor/auth.interceptor';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ControlPanelModule } from './control-panel/control-panel.module';
+import { AddComponent } from './control-panel/users/add/add.component';
 
 const routes: Routes = [
-  { path: '', component: ControlPanelComponent, canActivate: [LoginGuard] },
-  { path: 'control-panel', component: ControlPanelComponent, canActivate: [LoginGuard], children: [
-    { 
-      path: 'users', 
-      component: UsersComponent,
-      canActivate: [LoginGuard]
-    }
-  ] },
-  { path: 'login', component: LoginComponent, canActivate: [NoLoginGuard] },
-  { path: 'logout', component: LogoutComponent, canActivate: [NoLoginGuard]},
+  { 
+    path: '', redirectTo: 'control-panel', pathMatch: 'full', canActivate: [LoginGuard] 
+  },
+  {
+    path: 'control-panel', component: ControlPanelComponent, canActivate: [LoginGuard], children: [
+      {
+        path: 'users',
+        component: UsersComponent,
+        canActivate: [LoginGuard],
+        children: [
+          { path: 'users/:add', component: AddComponent }
+        ]
+      }
+    ]
+  },
+  { 
+    path: 'login', component: LoginComponent, canActivate: [NoLoginGuard] 
+  },
+  { 
+    path: 'logout', component: LogoutComponent, canActivate: [NoLoginGuard]
+  },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ControlPanelComponent,
-    LogoutComponent,
-    UsersComponent
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
+    ControlPanelModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     HttpModule,
@@ -57,6 +69,7 @@ const routes: Routes = [
       multi: true,
     },
   ],
+  exports: [RouterModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
