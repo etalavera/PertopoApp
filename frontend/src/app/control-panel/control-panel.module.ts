@@ -6,22 +6,20 @@ import { ControlPanelComponent } from './control-panel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AddComponent } from './users/add/add.component';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
+import { LoginGuard } from '../_guards/login.guard';
+import { AddUsersComponent } from './add-users/add-users.component';
 
 const controlPanelRouters: Routes = [
   {
-    
-    path: 'users',
-    component: UsersComponent,
-    outlet: 'usersOutlet',
+    path: 'control-panel', component: ControlPanelComponent, canActivate: [LoginGuard],
     children: [
-      {
-        path: 'add',
-        component: AddComponent
-      }
+      { path: 'users', component: UsersComponent, children: [
+        { path: 'addUsers', component: AddUsersComponent }
+      ] },
     ]
   },
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(controlPanelRouters);
@@ -37,7 +35,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild(controlPanelRo
   declarations: [
     UsersComponent,
     ControlPanelComponent,
-    AddComponent
+    AddUsersComponent
   ],
   exports: [RouterModule]
 })

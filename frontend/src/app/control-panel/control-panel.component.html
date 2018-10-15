@@ -46,7 +46,7 @@
             </a>
           </h6>
           <ul class="nav flex-column mb-2">
-            <li routerLinkActive="active" [routerLink]="['users']">
+            <li routerLinkActive="active" [routerLink]="[{outlets: {primary: ['users'], usersOutlet: ['users']}}]">
                 <a class="nav-link">
                   <span class="fa fa-users"></span>
                   Usuarios
@@ -75,8 +75,9 @@
       </nav>
       
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <router-outlet></router-outlet> 
-        <router-outlet name='usersOutlet'></router-outlet>
+       <router-outlet></router-outlet>
+        <router-outlet name="usersOutlet"></router-outlet>
+        <router-outlet name="addUsersOutlet"></router-outlet>
       </main>
       
     </div>

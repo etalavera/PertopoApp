@@ -78,7 +78,7 @@ export class UsersComponent implements OnInit {
   }
 
   openAddUsers(content) {
-    this.router.navigate(['add'], {relativeTo: this.route})
+    this.router.navigate([{outlets: {primary: ['addUsers'], addUsersOutlet: ['addUsers']}}])
   }
 
   private getDismissReason(reason: any): string {

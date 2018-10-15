@@ -17,23 +17,10 @@ import { AuthInterceptor } from './_interceptor/auth.interceptor';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ControlPanelModule } from './control-panel/control-panel.module';
-import { AddComponent } from './control-panel/users/add/add.component';
 
 const routes: Routes = [
   { 
-    path: '', redirectTo: 'control-panel', pathMatch: 'full', canActivate: [LoginGuard] 
-  },
-  {
-    path: 'control-panel', component: ControlPanelComponent, canActivate: [LoginGuard], children: [
-      {
-        path: 'users',
-        component: UsersComponent,
-        canActivate: [LoginGuard],
-        children: [
-          { path: 'users/:add', component: AddComponent }
-        ]
-      }
-    ]
+    path: '', redirectTo: 'control-panel', canActivate: [LoginGuard], pathMatch: 'full'
   },
   { 
     path: 'login', component: LoginComponent, canActivate: [NoLoginGuard] 
