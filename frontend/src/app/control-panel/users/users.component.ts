@@ -23,7 +23,6 @@ export class UsersComponent implements OnInit {
 
   constructor(private usersService: UsersService,
     private spinner: NgxSpinnerService,
-    private modalService: NgbModal,
     private roles: RolesService,
     private router: Router,
     private route: ActivatedRoute) { 
@@ -78,7 +77,7 @@ export class UsersComponent implements OnInit {
   }
 
   openAddUsers(content) {
-    this.router.navigate([{outlets: {primary: ['addUsers'], addUsersOutlet: ['addUsers']}}])
+    this.router.navigate(['addUsers']);
   }
 
   private getDismissReason(reason: any): string {
