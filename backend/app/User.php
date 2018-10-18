@@ -17,17 +17,22 @@ class User extends Authenticatable
      *
      * @var array
      */
-    /*protected $fillable = [
+    protected $fillable = [
         'primerNombre',
         'segundoNombre',
         'apellidoPaterno',
-        'apellidoMaterno', 
+        'apellidoMaterno',
+        'domicilio',
+        'interior',
+        'exterior',
+        'colonia',
+        'municipio',
+        'estado',
+        'cp',
+        'telefono',
         'email', 
         'password', 
         'active',
-    ];*/
-    protected $fillable = [
-        'email', 'password', 'active'
     ];
 
     /**
@@ -38,4 +43,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Roles', 'roles_users', 'roles_id', 'users_id');
+    }
 }

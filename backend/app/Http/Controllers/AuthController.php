@@ -17,30 +17,40 @@ class AuthController extends Controller
      */
     public function signup(Request $request)
     {
-        /*$request->validate([
+        $request->validate([
             'primerNombre' => 'required|string',
             'segundoNombre' => 'string',
             'apellidoPaterno' => 'required|string',
             'apellidoMaterno' => 'required|string',
+            'domicilio' => 'required|string',
+            'interior' => 'string',
+            'exterior' => 'required|string',
+            'colonia' => 'required|string',
+            'municipio' => 'required|string',
+            'estado' => 'required|string',
+            'cp' => 'required|integer|max:5',
+            'telefono' => 'required|string|max:10',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed',
-        ]);*/
-        $request->validate([
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string',
         ]);
+
         $user = new User([
-            'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
-        /*$user = new User([
             'primerNombre' => $request->primerNombre,
             'segundoNombre' => $request->segundoNombre,
             'apellidoPaterno' => $request->apellidoPaterno,
             'apellidoMaterno' => $request->apellidoMaterno,
+            'domicilio' => $request->domicilio,
+            'interior' => $request->interior,
+            'exterior' => $request->exterior,
+            'colonia' => $request->colonia,
+            'municipio' => $request->municipio,
+            'estado' => $request->estado,
+            'cp' => $request->cp,
+            'telefono' => $request->telefono,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-        ]);*/
+        ]);
+
         $user->save();
         return response()->json([
             'message' => 'Successfully created user!',
