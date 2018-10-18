@@ -1,3 +1,8 @@
 <p>
   usuarios works!
 </p>
+<div>
+  <ul>
+    <li *ngFor="let user of users" [attr.id]="user.id" >{{user.primerNombre}}</li>
+  </ul>
+</div>

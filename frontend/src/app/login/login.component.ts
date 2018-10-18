@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   
   constructor(private router: Router, 
     private loginService: LoginService,
-    private usersService: UsersService,
     private spinner: NgxSpinnerService,
     private route: ActivatedRoute) {}
 
@@ -36,12 +35,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email, this.password)
       .subscribe((data) => {
         localStorage.access_token = data.access_token;
-        this.usersService.getUserById(data.user.id)
-          .subscribe((data) => {
-            localStorage.user = data[0].primerNombre + " " + data[0].apellidoPaterno;
-          }, error => {
-            alert(error);
-          });
         this.spinner.hide();
         if (data.user.active == 0) {
           alert('Usuario desactivado, contacte al administrador del sistema');
