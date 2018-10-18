@@ -1,0 +1,123 @@
+<nav class="navbar navbar-expand navbar-dark fixed-top flex-column flex-md-row bd-navbar" style="background-color: #00487B;">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">PERTOPO | App</a>
+  <!--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
+  <div class="col-lg-4"></div>
+  <div class="col-lg-4"></div>
+  <a class="nav-link" href="#" style="color:#D6CFDC">
+      <span class="fa fa-user-circle">
+      {{ user }}
+      </span>
+  </a>
+  <a class="nav-link" style="color:#D6CFDC">
+      <span class="fa fa-sign-out" (click)="logout()">
+      Cerrar Sesión
+      </span>
+  </a>
+  </nav>
+  
+  <div class="container-fluid">
+  <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+          <br>
+          <a class="nav-link active" href="#">
+              <span class="fa fa-hashtag"></span>
+              Dashboard <span class="sr-only"></span>
+          </a>
+          <ul class="nav flex-column">
+          <li class="nav-item">
+              <a class="nav-link" href="#">
+              <span class="fa fa-tasks"></span>
+              Proyectos
+              </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#">
+              <span class="fa fa-bar-chart"></span>
+              Reportes
+              </a>
+          </li>
+          </ul>
+  
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <a class="active" href="#">
+              <span class="fa fa-hashtag"></span>
+              Panel de control <span class="sr-only">(current)</span>
+          </a>
+          </h6>
+          <ul class="nav flex-column mb-2">
+          <li routerLinkActive="active current" [routerLink]="{outlets: {
+              clientes: null,
+              maquinaria: null, 
+              usuarios: ['usuarios']
+            }}">
+              <a class="nav-link">
+                  <span class="fa fa-users"></span>
+                  Usuarios
+              </a>
+          </li>
+          <li class="nav-item" [routerLink]="{outlets: {
+              usuarios: null,
+              maquinaria: null,
+              clientes: ['clientes']
+            }}">
+              <a class="nav-link">
+                  <span class="fa fa-user-circle"></span>
+                  Clientes
+              </a>
+          </li>
+          <li class="nav-item" [routerLink]="{outlets: {
+              usuarios: null, 
+              clientes: null, 
+              maquinaria: ['maquinaria']
+            }}">
+              <a class="nav-link">
+                  <span class="fa fa-truck"></span>
+                  Maquinaria
+              </a>
+          </li>
+          </ul>
+      </div>
+      </nav>
+      
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <router-outlet></router-outlet>
+          <router-outlet name="usuarios"></router-outlet>
+          <router-outlet name="clientes"></router-outlet>
+          <router-outlet name="maquinaria"></router-outlet>
+      </main>
+      
+  </div>
+  </div>
+  
+  <!-- Graphs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script>
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+      labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      datasets: [{
+          data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+          lineTension: 0,
+          backgroundColor: 'transparent',
+          borderColor: '#007bff',
+          borderWidth: 4,
+          pointBackgroundColor: '#007bff'
+      }]
+      },
+      options: {
+      scales: {
+          yAxes: [{
+          ticks: {
+              beginAtZero: false
+          }
+          }]
+      },
+      legend: {
+          display: false,
+      }
+      }
+  });
+  </script>

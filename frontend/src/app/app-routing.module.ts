@@ -1,21 +1,39 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginGuard } from './_guards/login/login.guard';
-import { ControlPanelComponent } from './control-panel/control-panel.component';
-import { ControlPanelModule } from './control-panel/control-panel.module';
-import { NoLoginGuard } from './_guards/no-login.guard';
-import { UsersComponent } from './control-panel/users/users.component';
-import { UsersModule } from './control-panel/users/users.module';
-import { AppComponent } from './app.component';
-import { AddUsersComponent } from './control-panel/add-users/add-users.component';
+import { NoLoginGuard } from './_guards/login/no-login.guard';
 import { AddUsersModule } from './control-panel/add-users/add-users.module';
+import { LoginComponent } from './login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './_interceptor/auth.interceptor';
+import { HomeComponent } from './home/home.component';
+import { HomeModule } from './home/home.module';
+import { patch } from 'webdriver-js-extender';
+import { ClientesComponent } from './control-panel/clientes/clientes.component';
+import { ClientesModule } from './control-panel/clientes/clientes.module';
+import { UsuariosComponent } from './control-panel/usuarios/usuarios.component';
+import { MaquinariaComponent } from './control-panel/maquinaria/maquinaria.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent, canActivate: [LoginGuard]},
-  { path: 'users', redirectTo: 'control-panel/users', pathMatch: 'full' },
-  { path: 'control-panel/users', component: UsersComponent },
-  { path: 'addUsers', redirectTo: 'control-panel/users/add', pathMatch: 'full' },
-  { path: 'control-panel/users/add', component: AddUsersComponent }
+  { path: '', redirectTo: 'home', pathMatch: 'full', canActivate: [LoginGuard] },
+  { 
+    path: 'home', component: HomeComponent, canActivate: [LoginGuard], children: [
+    { path: '', component: HomeComponent },
+    {
+      path: 'usuarios', component: UsuariosComponent, canActivate: [LoginGuard],
+      outlet: "usuarios"
+    },
+    { 
+      path: 'clientes', component: ClientesComponent, canActivate: [LoginGuard],
+      outlet: "clientes" 
+    }, 
+    {
+      path: 'maquinaria', component: MaquinariaComponent, canActivate: [LoginGuard],
+      outlet: "maquinaria"
+    }
+    
+  ]},
+  { path: 'login', component: LoginComponent, canActivate: [NoLoginGuard] }
   
 ];
 
@@ -24,14 +42,20 @@ const routes: Routes = [
     
   ],
   imports: [
-    ControlPanelModule,
-    UsersModule,
+    HomeModule,
+    ClientesModule,
     AddUsersModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [
+  providers: 
+  [
     LoginGuard, 
     NoLoginGuard, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   exports: [RouterModule]
 })
