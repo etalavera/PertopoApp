@@ -27,7 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     HttpClientModule,
     HttpModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule
   ],
   providers: 
   [
