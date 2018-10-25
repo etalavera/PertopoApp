@@ -21,6 +21,7 @@ export class LogoutComponent implements OnInit {
     
     this.logoutService.logout(token)
       .subscribe((data) => {
+        debugger;
       }, error => {
         alert(error.message)
       });

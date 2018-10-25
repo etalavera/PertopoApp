@@ -22,10 +22,11 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute) {}
 
   ngOnInit() {
-    
+    document.body.className = "login";
   }
 
   login(form: NgForm) {
+    
     this.email = form.value.email;
     this.password = form.value.password;
 
@@ -33,7 +34,9 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(this.email, this.password)
       .subscribe((data) => {
+        
         localStorage.access_token = data.access_token;
+        localStorage.loggedUser = data.user.primerNombre + ' ' + data.user.apellidoPaterno;
         this.spinner.hide();
         if (data.user.active == 0) {
           alert('Usuario desactivado, contacte al administrador del sistema');

@@ -13,12 +13,14 @@ import { AuthInterceptor } from './_interceptor/auth.interceptor';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LogoutComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     AppRoutingModule,
