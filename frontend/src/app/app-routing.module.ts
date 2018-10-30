@@ -12,6 +12,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { UsersComponent } from './control-panel/users/users.component';
 import { UsersModule } from './control-panel/users/users.module';
 import { DefaultComponent } from './home/default/default.component';
+import { AddUsersComponent } from './control-panel/add-users/add-users.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'/home/index', pathMatch:'full', canActivate: [LoginGuard] },
@@ -19,7 +20,8 @@ const routes: Routes = [
     path: 'home', component: HomeComponent, canActivate: [LoginGuard], children: [
       {path: '', redirectTo: '/home/index', pathMatch:'full', canActivate: [LoginGuard]},
       { path: 'index', component: DefaultComponent, canActivate: [LoginGuard] },
-      { path: 'users', component: UsersComponent, canActivate: [LoginGuard] }
+      { path: 'users', component: UsersComponent, canActivate: [LoginGuard] },
+      { path: 'addUsers', component: AddUsersComponent, canActivate: [LoginGuard] }
     ]
   },
   { path: 'login', component: LoginComponent, canActivate: [NoLoginGuard] },
