@@ -22,7 +22,8 @@ export class UsersService {
     return this.httpClient.get<any>(environment.urlApi + 'users');
   }
 
-  postSignup(body: any): Observable<any> {
+  addUsers(body: any): Observable<any> {
+    debugger;
     return this.httpClient.post(environment.urlApi + 'auth/signup', body);
   }
 }

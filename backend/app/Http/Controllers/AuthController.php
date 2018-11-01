@@ -19,19 +19,19 @@ class AuthController extends Controller
     {
         $request->validate([
             'primerNombre' => 'required|string',
-            'segundoNombre' => 'string',
+            'segundoNombre' => 'string|nullable',
             'apellidoPaterno' => 'required|string',
             'apellidoMaterno' => 'required|string',
             'domicilio' => 'required|string',
-            'interior' => 'string',
+            'interior' => 'string|nullable',
             'exterior' => 'required|string',
             'colonia' => 'required|string',
             'municipio' => 'required|string',
             'estado' => 'required|string',
-            'cp' => 'required|integer|max:5',
-            'telefono' => 'required|string|max:10',
+            'cp' => 'required|integer',
+            'telefono' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string',
         ]);
 
         $user = new User([
