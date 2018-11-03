@@ -2,8 +2,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\User;
+
 class AuthController extends Controller
 {
     /**
@@ -52,9 +54,22 @@ class AuthController extends Controller
         ]);
 
         $user->save();
+        $user_id = DB::table('users')->where('email', $request->email)->get()->toArray();
+        $user_id = $user_id[0]->id;
+
+        $rol_id = DB::table('roles')->where('id', $request->rol)->get()->toArray();
+        $rol_id = $rol_id[0]->id;
+
+        $query_insert = DB::table('roles_users')->insert([
+            'roles_id' => (int) $rol_id,
+            'users_id' => (int) $user_id
+        ]);
+
+
         return response()->json([
             'message' => 'Successfully created user!',
-            'code' => '201'
+            'code' => '201',
+            'query_insert' => $query_insert
         ], 201);
     }
   

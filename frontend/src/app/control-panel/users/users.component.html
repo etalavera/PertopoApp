@@ -46,8 +46,9 @@
                       <th class="column-title">Estatus</th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let user of allUsers">
-                    <tr>
+                  <tbody>
+                    <tr *ngFor="let user of allUsers | paginate: {itemsPerPage: 10, currentPage: currentPage}" (click)="editUser(user.id)">
+                      <td class="hide">{{ user.id }}</td>
                       <td>{{ user.primerNombre }}</td>
                       <td>{{ user.apellidoPaterno }}</td>
                       <td>{{ user.apellidoMaterno }}</td>
@@ -55,6 +56,11 @@
                       <td>{{ user.active }}</td>
                     </tr>
                   </tbody>
+                  <pagination-controls (pageChange)="currentPage = $event"
+                    responsive="true"
+                    autoHide="true"
+                    previousLabel="Anterior"
+                    nextLabel="Siguiente"></pagination-controls>
                 </table>
               </div>
               

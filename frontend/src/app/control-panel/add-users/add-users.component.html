@@ -16,16 +16,17 @@
         <div class="x_content">
           <br />
           <form
-            #addUserForm = "ngForm" (ngSubmit)="addUsers(addUserForm)" 
+            [formGroup]="addUserForm"
             id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Primer nombre<span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" 
+                <input type="text"
+                  formControlName="primerNombre" upperCase
                   id="first-name" required="required" 
-                  class="form-control col-md-7 col-xs-12" name="primerNombre" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="primerNombre">
               </div>
             </div>
             <div class="form-group">
@@ -33,17 +34,19 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" 
+                  formControlName="segundoNombre" upperCase
                   id="second-name" 
-                  class="form-control col-md-7 col-xs-12" name="segundoNombre" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="segundoNombre">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="apellido-paterno">Apellido Paterno<span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" 
+                <input type="text"
+                  formControlName="apellidoPaterno" upperCase
                   id="apellido-paterno" required="required"
-                  class="form-control col-md-7 col-xs-12" name="apellidoPaterno" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="apellidoPaterno">
               </div>
             </div>
             <div class="form-group">
@@ -51,17 +54,19 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" 
+                  formControlName="apellidoMaterno" upperCase
                   id="apellido-materno" required="required"
-                  class="form-control col-md-7 col-xs-12" name="apellidoMaterno" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="apellidoMaterno">
               </div>
             </div>
             <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="domicilio">Dirección<span class="required">*</span>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="domicilio">Domicilio<span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" 
+                <input type="text"
+                  formControlName="domicilio" upperCase
                   id="direccion" required="required"
-                  class="form-control col-md-7 col-xs-12" name="domicilio" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="domicilio">
               </div>
             </div>
             <div class="form-group">
@@ -69,17 +74,19 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" 
+                  formControlName="exterior" upperCase
                   id="exterior" required="required"
-                  class="form-control col-md-7 col-xs-12" name="exterior" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="exterior">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="interior">Número Interior<span class="required"></span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" 
+                <input type="text"
+                  formControlName="interior" upperCase
                   id="interior"
-                  class="form-control col-md-7 col-xs-12" name="interior" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="interior">
               </div>
             </div>
             <div class="form-group">
@@ -87,8 +94,9 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" 
+                  formControlName="colonia" upperCase
                   id="colonia" required="required"
-                  class="form-control col-md-7 col-xs-12" name="colonia" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="colonia">
               </div>
             </div>
             <div class="form-group">
@@ -96,8 +104,9 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" 
+                  formControlName="municipio" upperCase
                   id="municipio" required="required"
-                  class="form-control col-md-7 col-xs-12" name="municipio" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="municipio">
               </div>
             </div>
             <div class="form-group">
@@ -105,8 +114,9 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" 
+                  formControlName="estado" upperCase
                   id="estado" required="required"
-                  class="form-control col-md-7 col-xs-12" name="estado" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="estado">
               </div>
             </div>
             <div class="form-group">
@@ -114,8 +124,9 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" 
+                  formControlName="cp"
                   id="cp" required="required"
-                  class="form-control col-md-7 col-xs-12" name="cp" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="cp">
               </div>
             </div>
             <div class="form-group">
@@ -123,17 +134,19 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="text" 
+                  formControlName="telefono"
                   id="telefono" required="required"
-                  class="form-control col-md-7 col-xs-12" name="telefono" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="telefono">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="email" 
+                <input type="email"
+                  formControlName="email" 
                   id="email" required="required"
-                  class="form-control col-md-7 col-xs-12" name="email" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="email">
               </div>
             </div>
             <div class="form-group">
@@ -141,8 +154,21 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input type="password" 
+                  formControlName="password" 
                   id="password" required="required"
-                  class="form-control col-md-7 col-xs-12" name="password" ngModel>
+                  class="form-control col-md-7 col-xs-12" name="password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Perfil<span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <select 
+                  formControlName="rol" 
+                  id="rol" required="required"
+                  class="form-control col-md-7 col-xs-12" name="rol">
+                  <option *ngFor="let rol of allRoles" value="{{rol.id}}">{{rol.rol}}</option>
+                </select>
               </div>
             </div>
             <div class="ln_solid"></div>
@@ -150,10 +176,11 @@
               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                 <button class="btn btn-primary" type="button">Cancelar</button>
                 <button class="btn btn-primary" type="reset">Limpiar</button>
-                <button type="submit" class="btn btn-success">Enviar</button>
+                <button
+                  [disabled]="!addUserForm.valid" 
+                  type="submit" class="btn btn-success" (click)="addUsers(addUserForm)">Enviar</button>
               </div>
             </div>
-
           </form>
         </div>
       </div>

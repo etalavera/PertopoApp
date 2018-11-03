@@ -13,6 +13,7 @@ export class UsersComponent implements OnInit {
 
   allUsers: any;
   allUsersLength: any;
+  currentPage = 1;
 
   ngOnInit() {
     this.spinner.show();
@@ -29,6 +30,10 @@ export class UsersComponent implements OnInit {
         this.spinner.hide();
         alert(error.message);
       });
+  }
+
+  editUser(id:number) {
+    debugger;
   }
 
 }

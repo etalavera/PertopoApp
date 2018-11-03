@@ -14,6 +14,7 @@ import { AuthInterceptor } from './_interceptor/auth.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.component';
+import { ValidacionesDirective } from './_directives/validaciones.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.c
     LoginComponent,
     LogoutComponent,
     PageNotFoundComponent,
+    ValidacionesDirective
   ],
   imports: [
     AppRoutingModule,
